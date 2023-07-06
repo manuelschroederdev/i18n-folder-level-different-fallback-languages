@@ -1,1 +1,1 @@
-# The Storyblok Nuxt Ultimate Tutorial: Part 1
+# Storyblok folder level translation with different fallback languages
