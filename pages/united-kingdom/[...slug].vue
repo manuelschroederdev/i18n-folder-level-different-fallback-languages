@@ -1,13 +1,17 @@
 <script setup>
 const slug = await getSlug()
-const language = await getLanguage(slug)
+const processedSlug = await getProcessedSlug()
+const language = (await getLanguage(slug)) || 'en'
+const fallback_lang = 'default'
 
-const story = await useAsyncStoryblok(`united-kingdom/${slug.join('/')}`, {
+const story = await useAsyncStoryblok(`switzerland/${processedSlug}`, {
   version: 'draft',
-  language: language,
+  language,
+  fallback_lang,
 })
 </script>
 
 <template>
+  <LanguageInfo :language="language" :fallback_lang="fallback_lang" />
   <StoryblokComponent v-if="story" :blok="story.content" />
 </template>
